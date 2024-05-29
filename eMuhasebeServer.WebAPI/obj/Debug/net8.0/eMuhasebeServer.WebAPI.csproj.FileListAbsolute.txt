@@ -162,3 +162,4 @@ C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Web
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.WebAPI\obj\Debug\net8.0\ref\eMuhasebeServer.WebAPI.dll
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.WebAPI\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.WebAPI\bin\Debug\net8.0\StackExchange.Redis.dll
+C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.WebAPI\obj\Debug\net8.0\eMuhasebeServer.WebAPI.sourcelink.json

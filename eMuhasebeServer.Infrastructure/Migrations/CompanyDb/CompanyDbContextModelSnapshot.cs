@@ -34,16 +34,8 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<int>("CurrencyType")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("date");
-
                     b.Property<decimal>("Debt")
                         .HasColumnType("decimal");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("varchar");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -59,6 +51,66 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.HasKey("Id");
 
                     b.ToTable("CashRegisters", (string)null);
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.CashRegisterDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CashRegisterDetailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CashRegisterDetailOppositeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CashRegisterId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("Debt")
+                        .HasColumnType("decimal");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Receivable")
+                        .HasColumnType("decimal");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CashRegisterDetailOppositeId");
+
+                    b.HasIndex("CashRegisterId");
+
+                    b.ToTable("CashRegisterDetails", (string)null);
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.CashRegisterDetail", b =>
+                {
+                    b.HasOne("eMuhasebeServer.Domain.Entities.CashRegisterDetail", "CashRegisterDetailOpposite")
+                        .WithMany()
+                        .HasForeignKey("CashRegisterDetailOppositeId");
+
+                    b.HasOne("eMuhasebeServer.Domain.Entities.CashRegister", null)
+                        .WithMany("CashRegisterDetails")
+                        .HasForeignKey("CashRegisterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CashRegisterDetailOpposite");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.CashRegister", b =>
+                {
+                    b.Navigation("CashRegisterDetails");
                 });
 #pragma warning restore 612, 618
         }

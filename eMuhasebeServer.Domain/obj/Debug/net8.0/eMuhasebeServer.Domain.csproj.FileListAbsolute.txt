@@ -10,3 +10,4 @@ C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Dom
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Domain\obj\Debug\net8.0\refint\eMuhasebeServer.Domain.dll
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Domain\obj\Debug\net8.0\eMuhasebeServer.Domain.pdb
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Domain\obj\Debug\net8.0\ref\eMuhasebeServer.Domain.dll
+C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Domain\obj\Debug\net8.0\eMuhasebeServer.Domain.sourcelink.json

@@ -13,3 +13,4 @@ C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.App
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Application\obj\Debug\net8.0\refint\eMuhasebeServer.Application.dll
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Application\obj\Debug\net8.0\eMuhasebeServer.Application.pdb
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Application\obj\Debug\net8.0\ref\eMuhasebeServer.Application.dll
+C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Application\obj\Debug\net8.0\eMuhasebeServer.Application.sourcelink.json
