@@ -13,64 +13,64 @@ internal sealed class DeleteCashRegisterDetailByIdCommandHandler(
     ICacheService cacheService
 ) : IRequestHandler<DeleteCashRegisterDetailByIdCommand, Result<string>>
 {
-    public async Task<Result<string>> Handle(DeleteCashRegisterDetailByIdCommand request,
-        CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(DeleteCashRegisterDetailByIdCommand request, CancellationToken cancellationToken)
     {
         CashRegisterDetail? cashRegisterDetail =
-            await cashRegisterDetailRepository.GetByExpressionWithTrackingAsync(x => x.Id == request.Id,
-                cancellationToken);
+            await cashRegisterDetailRepository
+            .GetByExpressionWithTrackingAsync(p => p.Id == request.Id, cancellationToken);
 
         if (cashRegisterDetail is null)
         {
-            return Result<string>.Failure("Kasa hareketi bulunamadı!");
+            return Result<string>.Failure("Kasa hareketi bulunamadı");
         }
 
         CashRegister? cashRegister =
-            await cashRegisterRepository.GetByExpressionWithTrackingAsync(
-                x => x.Id == cashRegisterDetail.CashRegisterId, cancellationToken);
+            await cashRegisterRepository
+            .GetByExpressionWithTrackingAsync(p => p.Id == cashRegisterDetail.CashRegisterId, cancellationToken);
 
         if (cashRegister is null)
         {
-            return Result<string>.Failure("Kasa bulunamadı!");
+            return Result<string>.Failure("Kasa bulunamadı");
         }
 
-        cashRegister.Debt -= cashRegisterDetail.Debt;
-        cashRegister.Receivable -= cashRegisterDetail.Receivable;
+        cashRegister.DepositAmount -= cashRegisterDetail.DepositAmount;
+        cashRegister.WithdrawalAmount -= cashRegisterDetail.WithdrawalAmount;
 
         if (cashRegisterDetail.CashRegisterDetailId is not null)
         {
             CashRegisterDetail? oppositeCashRegisterDetail =
-                await cashRegisterDetailRepository.GetByExpressionWithTrackingAsync(
-                    x => x.Id == cashRegisterDetail.CashRegisterDetailId, cancellationToken);
+            await cashRegisterDetailRepository
+            .GetByExpressionWithTrackingAsync(p => p.Id == cashRegisterDetail.CashRegisterDetailId, cancellationToken);
 
-            if (oppositeCashRegisterDetail is null)
+            if (cashRegisterDetail is null)
             {
-                return Result<string>.Failure("Kasa hareketi bulunamadı!");
+                return Result<string>.Failure("Kasa hareketi bulunamadı");
             }
 
             CashRegister? oppositeCashRegister =
-                await cashRegisterRepository.GetByExpressionWithTrackingAsync(
-                    x => x.Id == oppositeCashRegisterDetail.CashRegisterId, cancellationToken);
+            await cashRegisterRepository
+            .GetByExpressionWithTrackingAsync(p => p.Id == oppositeCashRegisterDetail.CashRegisterId, cancellationToken);
 
-            if (oppositeCashRegister is null)
+            if (cashRegister is null)
             {
-                return Result<string>.Failure("Kasa bulunamadı!");
+                return Result<string>.Failure("Kasa bulunamadı");
             }
 
-            oppositeCashRegister.Debt -= oppositeCashRegisterDetail.Debt;
-            oppositeCashRegister.Receivable -= oppositeCashRegisterDetail.Receivable;
+            oppositeCashRegister.DepositAmount -= oppositeCashRegisterDetail.DepositAmount;
+            oppositeCashRegister.WithdrawalAmount -= oppositeCashRegisterDetail.WithdrawalAmount;
 
+            cashRegisterDetailRepository.Delete(oppositeCashRegisterDetail);
         }
 
-
         cashRegisterDetailRepository.Delete(cashRegisterDetail);
-        await unitOfWorkCompany.SaveChangesAsync(cancellationToken);
-        cacheService.Remove("cashRegisters");
-        return "Kasa hareketi silindi!";
 
+        await unitOfWorkCompany.SaveChangesAsync(cancellationToken);
+
+        cacheService.Remove("cashRegisters");
+
+        return "Kasa hareketi başarıyla silindi";
     }
 }
-
 
 
 

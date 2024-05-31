@@ -20,9 +20,9 @@ namespace eMuhasebeServer.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMemoryCache();
-            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
-            //services.AddScoped<ICacheService, MemoryCacheService>();
-            services.AddScoped<ICacheService, RedisCacheService>();
+           // services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
+            services.AddScoped<ICacheService, MemoryCacheService>();
+            //services.AddScoped<ICacheService, RedisCacheService>();
             services.AddScoped<CompanyDbContext>();
             services.AddDbContext<ApplicationDbContext>(options =>
             {

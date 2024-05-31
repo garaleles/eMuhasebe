@@ -64,6 +64,70 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "eMuhasebeServer.WebAPI.Controllers.CashRegisterDetailsController",
+    "Method": "Create",
+    "RelativePath": "api/CashRegisterDetails/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eMuhasebeServer.Application.Features.CashRegisterDetails.CreateCashRegisterDetails.CreateCashRegisterDetailCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eMuhasebeServer.WebAPI.Controllers.CashRegisterDetailsController",
+    "Method": "DeleteById",
+    "RelativePath": "api/CashRegisterDetails/DeleteById",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eMuhasebeServer.Application.Features.CashRegisterDetails.DeleteCashRegisterDetailById.DeleteCashRegisterDetailByIdCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eMuhasebeServer.WebAPI.Controllers.CashRegisterDetailsController",
+    "Method": "GetAll",
+    "RelativePath": "api/CashRegisterDetails/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eMuhasebeServer.Application.Features.CashRegisterDetails.GetAllCashRegisterDetails.GetAllCashRegisterDetailsQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eMuhasebeServer.WebAPI.Controllers.CashRegisterDetailsController",
+    "Method": "Update",
+    "RelativePath": "api/CashRegisterDetails/Update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eMuhasebeServer.Application.Features.CashRegisterDetails.UpdateCashRegisterDetail.UpdateCashRegisterDetailCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "eMuhasebeServer.WebAPI.Controllers.CashRegistersController",
     "Method": "Create",
     "RelativePath": "api/CashRegisters/Create",
@@ -72,7 +136,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "createCashRegisterCommand",
+        "Name": "request",
         "Type": "eMuhasebeServer.Application.Features.CashRegisters.CreateCashRegister.CreateCashRegisterCommand",
         "IsRequired": true
       }
@@ -81,14 +145,14 @@
   },
   {
     "ContainingType": "eMuhasebeServer.WebAPI.Controllers.CashRegistersController",
-    "Method": "DeleteCashRegisterById",
-    "RelativePath": "api/CashRegisters/DeleteCashRegisterById",
+    "Method": "DeleteById",
+    "RelativePath": "api/CashRegisters/DeleteById",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "deleteCashRegisterByIdCommand",
+        "Name": "request",
         "Type": "eMuhasebeServer.Application.Features.CashRegisters.DeleteCashRegisterById.DeleteCashRegisterByIdCommand",
         "IsRequired": true
       }
@@ -120,7 +184,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "updateCashRegisterCommand",
+        "Name": "request",
         "Type": "eMuhasebeServer.Application.Features.CashRegisters.UpdateCashRegister.UpdateCashRegisterCommand",
         "IsRequired": true
       }

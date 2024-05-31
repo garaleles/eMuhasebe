@@ -9,13 +9,9 @@ namespace eMuhasebeServer.Application.Features.CashRegisters.GetAllCashRegisters
 
 internal sealed class GetAllCashRegistersQueryHandler(
     ICashRegisterRepository cashRegisterRepository,
-    ICacheService cacheService
-) : IRequestHandler<GetAllCashRegistersQuery, Result<List<CashRegister>>>
+    ICacheService cacheService) : IRequestHandler<GetAllCashRegistersQuery, Result<List<CashRegister>>>
 {
-    public async Task<Result<List<CashRegister>>> Handle(
-        GetAllCashRegistersQuery request,
-        CancellationToken cancellationToken
-    )
+    public async Task<Result<List<CashRegister>>> Handle(GetAllCashRegistersQuery request, CancellationToken cancellationToken)
     {
         List<CashRegister>? cashRegisters;
 
@@ -23,14 +19,13 @@ internal sealed class GetAllCashRegistersQueryHandler(
 
         if (cashRegisters is null)
         {
-            cashRegisters = await cashRegisterRepository
-                .GetAll()
-                .OrderBy(x => x.Name)
-                .ToListAsync(cancellationToken);
+            cashRegisters =
+                await cashRegisterRepository
+                    .GetAll().OrderBy(p => p.Name)
+                    .ToListAsync(cancellationToken);
 
-            cacheService.Set("cashRegisters", cashRegisters);
+            cacheService.Set<List<CashRegister>>("cashRegisters", cashRegisters);
         }
-
 
 
         return cashRegisters;

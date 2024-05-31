@@ -1299,6 +1299,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.4",
+          "Newtonsoft.Json": "13.0.3",
           "Scrutor": "4.2.2",
           "StackExchange.Redis": "2.7.33",
           "eMuhasebeServer.Application": "1.0.0",

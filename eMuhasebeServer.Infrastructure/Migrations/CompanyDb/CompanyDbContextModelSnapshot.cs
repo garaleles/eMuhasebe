@@ -28,29 +28,28 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal");
+                    b.Property<decimal>("BalanceAmount")
+                        .HasColumnType("money");
 
                     b.Property<int>("CurrencyType")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Debt")
-                        .HasColumnType("decimal");
+                    b.Property<decimal>("DepositAmount")
+                        .HasColumnType("money");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Receivable")
-                        .HasColumnType("decimal");
+                    b.Property<decimal>("WithdrawalAmount")
+                        .HasColumnType("money");
 
                     b.HasKey("Id");
 
-                    b.ToTable("CashRegisters", (string)null);
+                    b.ToTable("CashRegisters");
                 });
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.CashRegisterDetail", b =>
@@ -71,8 +70,8 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
 
-                    b.Property<decimal>("Debt")
-                        .HasColumnType("decimal");
+                    b.Property<decimal>("DepositAmount")
+                        .HasColumnType("money");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -81,8 +80,8 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("Receivable")
-                        .HasColumnType("decimal");
+                    b.Property<decimal>("WithdrawalAmount")
+                        .HasColumnType("money");
 
                     b.HasKey("Id");
 
@@ -90,7 +89,7 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
 
                     b.HasIndex("CashRegisterId");
 
-                    b.ToTable("CashRegisterDetails", (string)null);
+                    b.ToTable("CashRegisterDetails");
                 });
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.CashRegisterDetail", b =>

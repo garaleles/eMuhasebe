@@ -11,50 +11,44 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
     ICashRegisterDetailRepository cashRegisterDetailRepository,
     IUnitOfWorkCompany unitOfWorkCompany,
     ICacheService cacheService
-) : IRequestHandler<CreateCashRegisterDetailsCommand, Result<string>>
+) : IRequestHandler<CreateCashRegisterDetailCommand, Result<string>>
 {
-    public async Task<Result<string>> Handle(CreateCashRegisterDetailsCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(CreateCashRegisterDetailCommand request, CancellationToken cancellationToken)
     {
-        CashRegister cashRegister =
-            await cashRegisterRepository.GetByExpressionWithTrackingAsync(x => x.Id == request.CashRegisterId,
-                cancellationToken);
+        CashRegister cashRegister = await cashRegisterRepository.GetByExpressionWithTrackingAsync(p => p.Id == request.CashRegisterId, cancellationToken);
 
-        cashRegister.Debt += (request.Type == 0 ? request.OppositeAmount : 0);
-        cashRegister.Receivable += (request.Type == 1 ? request.OppositeAmount : 0);
-
-
-
+        cashRegister.DepositAmount += (request.Type == 0 ? request.Amount : 0);
+        cashRegister.WithdrawalAmount += (request.Type == 1 ? request.Amount : 0);
 
         CashRegisterDetail cashRegisterDetail = new()
         {
             Date = request.Date,
-            Debt = request.Type == 0 ? request.Amount : 0,
-            Receivable = request.Type == 1 ? request.Amount : 0,
-            CashRegisterDetailId = request.CashRegisterDetailId,
-            CashRegisterId = request.CashRegisterId,
-            Description = request.Description
+            DepositAmount = request.Type == 0 ? request.Amount : 0,
+            WithdrawalAmount = request.Type == 1 ? request.Amount : 0,
+            Description = request.Description,
+            CashRegisterId = request.CashRegisterId
         };
 
         await cashRegisterDetailRepository.AddAsync(cashRegisterDetail, cancellationToken);
 
-        if (request.CashRegisterDetailId is not null)
+        if (request.OppositeCashRegisterId is not null)
         {
-            CashRegisterDetail oppositeCashRegister =
-                await cashRegisterDetailRepository.GetByExpressionWithTrackingAsync(x =>
-                    x.Id == request.CashRegisterDetailId, cancellationToken);
+            CashRegister oppositeCashRegister = await cashRegisterRepository.GetByExpressionWithTrackingAsync(p => p.Id == request.OppositeCashRegisterId, cancellationToken);
 
-            oppositeCashRegister.Debt += (request.Type == 1 ? request.OppositeAmount : 0);
-            oppositeCashRegister.Receivable += (request.Type == 0 ? request.OppositeAmount : 0);
+            oppositeCashRegister.DepositAmount += (request.Type == 1 ? request.OppositeAmount : 0);
+            oppositeCashRegister.WithdrawalAmount += (request.Type == 0 ? request.OppositeAmount : 0);
 
             CashRegisterDetail oppositeCashRegisterDetail = new()
             {
                 Date = request.Date,
-                Debt = request.Type == 1 ? request.OppositeAmount : 0,
-                Receivable = request.Type == 0 ? request.OppositeAmount : 0,
+                DepositAmount = request.Type == 1 ? request.OppositeAmount : 0,
+                WithdrawalAmount = request.Type == 0 ? request.OppositeAmount : 0,
                 CashRegisterDetailId = cashRegisterDetail.Id,
-                CashRegisterId = (Guid)request.CashRegisterDetailId,
-                Description = request.Description
+                Description = request.Description,
+                CashRegisterId = (Guid)request.OppositeCashRegisterId
             };
+
+            cashRegisterDetail.CashRegisterDetailId = oppositeCashRegisterDetail.Id;
 
             await cashRegisterDetailRepository.AddAsync(oppositeCashRegisterDetail, cancellationToken);
         }
@@ -63,6 +57,7 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
 
         cacheService.Remove("cashRegisters");
 
-        return "Kasa hareketi başarıyla kaydedildi.";
+        return "Kasa hareketi başarıyla işlendi";
+
     }
 }

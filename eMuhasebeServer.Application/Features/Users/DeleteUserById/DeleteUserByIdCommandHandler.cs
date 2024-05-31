@@ -26,7 +26,6 @@ namespace eMuhasebeServer.Application.Features.Users.DeleteUserById
             }
 
             cacheService.Remove("users");
-
             return "Kullanıcı başarıyla silindi.";
 
         }

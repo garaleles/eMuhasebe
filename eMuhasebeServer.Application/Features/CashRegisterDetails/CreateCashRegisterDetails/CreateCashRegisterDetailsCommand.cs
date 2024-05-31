@@ -1,15 +1,15 @@
 ﻿using MediatR;
+using System;
 using TS.Result;
 
 namespace eMuhasebeServer.Application.Features.CashRegisterDetails.CreateCashRegisterDetails;
 
-public sealed record CreateCashRegisterDetailsCommand(
-    int Type,
-    DateOnly Date,
-    decimal Amount,
+public sealed record CreateCashRegisterDetailCommand(
     Guid CashRegisterId,
-    Guid? CashRegisterDetailId,
+    DateOnly Date,
+    int Type,
+    decimal Amount,
+    Guid? OppositeCashRegisterId,
     decimal OppositeAmount,
     string Description
 ) : IRequest<Result<string>>;
-

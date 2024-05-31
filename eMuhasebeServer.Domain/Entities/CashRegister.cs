@@ -6,12 +6,9 @@ namespace eMuhasebeServer.Domain.Entities;
 public sealed class CashRegister : Entity
 {
     public string Name { get; set; } = string.Empty;
-    public decimal Debt { get; set; }
-    public decimal Receivable { get; set; }
-    public decimal Balance { get; set; }
     public CurrencyTypeEnum CurrencyType { get; set; } = CurrencyTypeEnum.TL;
+    public decimal DepositAmount { get; set; } //Giriş
+    public decimal WithdrawalAmount { get; set; } //Çıkış
 
-    public ICollection<CashRegisterDetail>? Details { get; set; } = new List<CashRegisterDetail>();
-
-
+    public List<CashRegisterDetail>? Details { get; set; }
 }

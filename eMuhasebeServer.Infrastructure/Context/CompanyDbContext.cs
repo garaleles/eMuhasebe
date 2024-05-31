@@ -35,68 +35,20 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder
-            .Entity<CashRegister>()
-            .ToTable("CashRegisters")
-            .Property(x => x.Receivable)
-            .HasColumnType("decimal");
-
-        modelBuilder
-            .Entity<CashRegister>()
-            .ToTable("CashRegisters")
-            .Property(x => x.Debt)
-            .HasColumnType("decimal");
-
-        modelBuilder
-            .Entity<CashRegister>()
-            .ToTable("CashRegisters")
-            .Property(x => x.Balance)
-            .HasColumnType("decimal");
-
-        modelBuilder
-            .Entity<CashRegister>()
-            .ToTable("CashRegisters")
-            .Property(x => x.Name)
-            .HasColumnType("varchar")
-            .HasMaxLength(100)
-            .IsRequired();
-
-        modelBuilder
-            .Entity<CashRegister>()
-            .ToTable("CashRegisters")
-            .Property(x => x.CurrencyType)
+        modelBuilder.Entity<CashRegister>().Property(p => p.DepositAmount).HasColumnType("money");
+        modelBuilder.Entity<CashRegister>().Property(p => p.WithdrawalAmount).HasColumnType("money");
+        modelBuilder.Entity<CashRegister>()
+            .Property(p => p.CurrencyType)
             .HasConversion(type => type.Value, value => CurrencyTypeEnum.FromValue(value));
-
-        modelBuilder
-            .Entity<CashRegister>()
-            .ToTable("CashRegisters")
-            .HasQueryFilter(filter => !filter.IsDeleted);
-
-        modelBuilder
-            .Entity<CashRegister>()
-            .HasMany(x => x.Details)
+        modelBuilder.Entity<CashRegister>().HasQueryFilter(filter => !filter.IsDeleted);
+        modelBuilder.Entity<CashRegister>()
+            .HasMany(p => p.Details)
             .WithOne()
-            .HasForeignKey(x => x.CashRegisterId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .HasForeignKey(p => p.CashRegisterId);
 
-        modelBuilder
-            .Entity<CashRegisterDetail>()
-            .ToTable("CashRegisterDetails")
-            .Property(x => x.Debt)
-            .HasColumnType("decimal");
-
-        modelBuilder
-            .Entity<CashRegisterDetail>()
-            .ToTable("CashRegisterDetails")
-            .Property(x => x.Receivable)
-            .HasColumnType("decimal");
-
-        modelBuilder
-            .Entity<CashRegisterDetail>()
-            .ToTable("CashRegisterDetails")
-            .HasQueryFilter(filter => !filter.IsDeleted);
-
-      
+        modelBuilder.Entity<CashRegisterDetail>().Property(p => p.DepositAmount).HasColumnType("money");
+        modelBuilder.Entity<CashRegisterDetail>().Property(p => p.WithdrawalAmount).HasColumnType("money");
+        modelBuilder.Entity<CashRegisterDetail>().HasQueryFilter(filter => !filter.IsDeleted);
     }
 
     private void CreateConnectionString(

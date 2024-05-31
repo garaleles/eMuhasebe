@@ -52,10 +52,9 @@ namespace eMuhasebeServer.Application.Features.Users.CreateUser
 
 
 
-
+            cacheService.Remove("users");
             await mediator.Publish(new AppUserEvent(appUser.Id), cancellationToken);
 
-            cacheService.Remove("users");
 
             return "Kullanıcı başarıyla oluşturuldu.";
 

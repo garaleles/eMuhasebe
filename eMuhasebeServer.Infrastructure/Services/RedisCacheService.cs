@@ -1,6 +1,7 @@
-﻿using System.Text.Json;
-using eMuhasebeServer.Application.Services;
+﻿using eMuhasebeServer.Application.Services;
+using Newtonsoft.Json;
 using StackExchange.Redis;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace eMuhasebeServer.Infrastructure.Services;
 
@@ -16,12 +17,19 @@ public sealed class RedisCacheService : ICacheService
     public T? Get<T>(string key)
     {
         var value = _database.StringGet(key);
-        return value.HasValue ? JsonSerializer.Deserialize<T?>(value.ToString()) : default;
+        if (value.HasValue)
+        {
+            var result = JsonConvert.DeserializeObject<T?>(value.ToString());
+            return result;
+        }
+
+        return default(T?);
     }
 
     public void Set<T>(string key, T value, TimeSpan? expire = null)
     {
-        _database.StringSet(key, JsonSerializer.Serialize(value), expire);
+        var serializedValue = JsonConvert.SerializeObject(value);
+        _database.StringSet(key, serializedValue, expire);
     }
 
     public bool Remove(string key)

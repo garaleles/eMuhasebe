@@ -7,5 +7,4 @@ namespace eMuhasebeServer.Application.Features.CashRegisterDetails.GetAllCashReg
 public sealed record GetAllCashRegisterDetailsQuery(
     Guid CashRegisterId,
     DateOnly StartDate,
-    DateOnly EndDate
-) : IRequest<Result<CashRegister>>;
+    DateOnly EndDate) : IRequest<Result<CashRegister>>;
