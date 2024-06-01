@@ -1,24 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{BC2BDB4F-E5D1-4AEC-A0F7-C5E3C1C6642C}|eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.application\\features\\cashregisterdetails\\getallcashregisterdetails\\getallcashregisterdetailsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC2BDB4F-E5D1-4AEC-A0F7-C5E3C1C6642C}|eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj|solutionrelative:emuhasebeserver.application\\features\\cashregisterdetails\\getallcashregisterdetails\\getallcashregisterdetailsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3746EFB7-8933-40D6-A14D-2C5D403092C9}|eMuhasebeServer.Domain\\eMuhasebeServer.Domain.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.domain\\entities\\cashregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3746EFB7-8933-40D6-A14D-2C5D403092C9}|eMuhasebeServer.Domain\\eMuhasebeServer.Domain.csproj|solutionrelative:emuhasebeserver.domain\\entities\\cashregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3A9EBAB9-B151-411E-94FC-F8B333C8FAB3}|eMuhasebeServer.Infrastructure\\eMuhasebeServer.Infrastructure.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.infrastructure\\context\\companydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3A9EBAB9-B151-411E-94FC-F8B333C8FAB3}|eMuhasebeServer.Infrastructure\\eMuhasebeServer.Infrastructure.csproj|solutionrelative:emuhasebeserver.infrastructure\\context\\companydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC2BDB4F-E5D1-4AEC-A0F7-C5E3C1C6642C}|eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.application\\features\\cashregisterdetails\\getallcashregisterdetails\\getallcashregisterdetailsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC2BDB4F-E5D1-4AEC-A0F7-C5E3C1C6642C}|eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj|solutionrelative:emuhasebeserver.application\\features\\cashregisterdetails\\getallcashregisterdetails\\getallcashregisterdetailsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -26,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,58 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CompanyDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Infrastructure\\Context\\CompanyDbContext.cs",
-              "RelativeDocumentMoniker": "eMuhasebeServer.Infrastructure\\Context\\CompanyDbContext.cs",
-              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Infrastructure\\Context\\CompanyDbContext.cs",
-              "RelativeToolTip": "eMuhasebeServer.Infrastructure\\Context\\CompanyDbContext.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T21:25:24.121Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CashRegister.cs",
-              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Domain\\Entities\\CashRegister.cs",
-              "RelativeDocumentMoniker": "eMuhasebeServer.Domain\\Entities\\CashRegister.cs",
-              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Domain\\Entities\\CashRegister.cs",
-              "RelativeToolTip": "eMuhasebeServer.Domain\\Entities\\CashRegister.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T21:23:37.945Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GetAllCashRegisterDetailsQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\Features\\CashRegisterDetails\\GetAllCashRegisterDetails\\GetAllCashRegisterDetailsQueryHandler.cs",
-              "RelativeDocumentMoniker": "eMuhasebeServer.Application\\Features\\CashRegisterDetails\\GetAllCashRegisterDetails\\GetAllCashRegisterDetailsQueryHandler.cs",
-              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\Features\\CashRegisterDetails\\GetAllCashRegisterDetails\\GetAllCashRegisterDetailsQueryHandler.cs",
-              "RelativeToolTip": "eMuhasebeServer.Application\\Features\\CashRegisterDetails\\GetAllCashRegisterDetails\\GetAllCashRegisterDetailsQueryHandler.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T21:20:03.751Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GetAllCashRegisterDetailsQuery.cs",
-              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\Features\\CashRegisterDetails\\GetAllCashRegisterDetails\\GetAllCashRegisterDetailsQuery.cs",
-              "RelativeDocumentMoniker": "eMuhasebeServer.Application\\Features\\CashRegisterDetails\\GetAllCashRegisterDetails\\GetAllCashRegisterDetailsQuery.cs",
-              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\Features\\CashRegisterDetails\\GetAllCashRegisterDetails\\GetAllCashRegisterDetailsQuery.cs",
-              "RelativeToolTip": "eMuhasebeServer.Application\\Features\\CashRegisterDetails\\GetAllCashRegisterDetails\\GetAllCashRegisterDetailsQuery.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T21:18:06.803Z",
-              "EditorCaption": ""
             }
           ]
         }

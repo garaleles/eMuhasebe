@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using AutoMapper.Execution;
+using eMuhasebeServer.Application.Features.Banks.CreateBanks;
+using eMuhasebeServer.Application.Features.Banks.UpdateBanks;
 using eMuhasebeServer.Application.Features.CashRegisters.CreateCashRegister;
 using eMuhasebeServer.Application.Features.CashRegisters.UpdateCashRegister;
 using eMuhasebeServer.Application.Features.Companies.CreateCompany;
@@ -28,6 +31,16 @@ namespace eMuhasebeServer.Application.Mapping
             {
                 options.MapFrom(map => CurrencyTypeEnum.FromValue(map.CurrencyTypeValue));
             });
+            
+            CreateMap<CreateBankCommand, Bank>().ForMember(member=>member.CurrencyType,options =>
+            {
+                options.MapFrom(map => CurrencyTypeEnum.FromValue(map.CurrencyTypeValue));
+            });
+            CreateMap<UpdateBankCommand, Bank>().ForMember(member=>member.CurrencyType,options =>
+            {
+                options.MapFrom(map => CurrencyTypeEnum.FromValue(map.CurrencyTypeValue));
+            });
+            
 
 
         }

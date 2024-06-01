@@ -10,7 +10,9 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
     ICashRegisterRepository cashRegisterRepository,
     ICashRegisterDetailRepository cashRegisterDetailRepository,
     IUnitOfWorkCompany unitOfWorkCompany,
-    ICacheService cacheService
+    ICacheService cacheService,
+    IBankRepository bankRepository,
+    IBankDetailRepository bankDetailRepository
 ) : IRequestHandler<CreateCashRegisterDetailCommand, Result<string>>
 {
     public async Task<Result<string>> Handle(CreateCashRegisterDetailCommand request, CancellationToken cancellationToken)
@@ -52,10 +54,33 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
 
             await cashRegisterDetailRepository.AddAsync(oppositeCashRegisterDetail, cancellationToken);
         }
+        
+        if (request.OppositeBankId is not null)
+        {
+            Bank oppositeBank = await bankRepository.GetByExpressionWithTrackingAsync(p => p.Id == request.OppositeBankId, cancellationToken);
+
+            oppositeBank.DepositAmount += (request.Type == 1 ? request.OppositeAmount : 0);
+            oppositeBank.WithdrawalAmount += (request.Type == 0 ? request.OppositeAmount : 0);
+
+            BankDetail oppositeBankDetail = new()
+            {
+                Date = request.Date,
+                DepositAmount = request.Type == 1 ? request.OppositeAmount : 0,
+                WithdrawalAmount = request.Type == 0 ? request.OppositeAmount : 0,
+                CashRegisterDetailId = cashRegisterDetail.Id,
+                Description = request.Description,
+                BankId = (Guid)request.OppositeBankId
+            };
+
+            cashRegisterDetail.BankDetailId = oppositeBankDetail.Id;
+
+            await bankDetailRepository.AddAsync(oppositeBankDetail, cancellationToken);
+        }
 
         await unitOfWorkCompany.SaveChangesAsync(cancellationToken);
 
         cacheService.Remove("cashRegisters");
+        cacheService.Remove("banks");
 
         return "Kasa hareketi başarıyla işlendi";
 
