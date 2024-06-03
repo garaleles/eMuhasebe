@@ -13,5 +13,7 @@ public sealed class BankDetail : Entity
     public Guid? BankDetailId { get; set; }
     
     public Guid? CashRegisterDetailId { get; set; }
+    public Guid? CustomerDetailId { get; set; }
+    
 
 }

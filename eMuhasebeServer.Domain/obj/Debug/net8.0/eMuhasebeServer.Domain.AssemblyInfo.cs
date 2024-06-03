@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eMuhasebeServer.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+046887ac98ed2338fa94c8bf760a426bcf27ae84")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8391b6b41410a34b6a1f03e84ecd31b8dae93122")]
 [assembly: System.Reflection.AssemblyProductAttribute("eMuhasebeServer.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eMuhasebeServer.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

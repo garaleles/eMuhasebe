@@ -1,5 +1,6 @@
 ﻿using eMuhasebeServer.Application.Services;
 using eMuhasebeServer.Domain.Entities;
+using eMuhasebeServer.Domain.Enums;
 using eMuhasebeServer.Domain.Repositories;
 using MediatR;
 using TS.Result;
@@ -12,7 +13,9 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
     IUnitOfWorkCompany unitOfWorkCompany,
     ICacheService cacheService,
     IBankRepository bankRepository,
-    IBankDetailRepository bankDetailRepository
+    IBankDetailRepository bankDetailRepository,
+    ICustomerRepository customerRepository,
+    ICustomerDetailRepository customerDetailRepository
 ) : IRequestHandler<CreateCashRegisterDetailCommand, Result<string>>
 {
     public async Task<Result<string>> Handle(CreateCashRegisterDetailCommand request, CancellationToken cancellationToken)
@@ -76,6 +79,37 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
 
             await bankDetailRepository.AddAsync(oppositeBankDetail, cancellationToken);
         }
+        
+        if (request.OppositeCustomerId is not null)
+        {
+            Customer? customer = await customerRepository.GetByExpressionWithTrackingAsync(p => p.Id == request.OppositeCustomerId, cancellationToken);
+
+            if (customer is null)
+            {
+                return Result<string>.Failure("Cari bulunamadı");
+            }
+
+            customer.DepositAmount += request.Type == 1 ? request.Amount : 0;
+            customer.WithdrawalAmount += request.Type == 0 ? request.Amount : 0;
+
+            CustomerDetail customerDetail = new()
+            {
+                CustomerId = customer.Id,
+                CashRegisterDetailId = cashRegisterDetail.Id,
+                Date = request.Date,
+                Description = request.Description,
+                DepositAmount = request.Type == 1 ? request.Amount : 0,
+                WithdrawalAmount = request.Type == 0 ? request.Amount : 0,
+                Type = CustomerDetailTypeEnum.CashRegister
+            };
+
+            cashRegisterDetail.CustomerDetailId = customerDetail.Id;
+
+            await customerDetailRepository.AddAsync(customerDetail, cancellationToken);
+
+            cacheService.Remove("customers");
+        }
+        
 
         await unitOfWorkCompany.SaveChangesAsync(cancellationToken);
 
