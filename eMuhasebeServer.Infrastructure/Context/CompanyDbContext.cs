@@ -90,6 +90,11 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
     public DbSet<BankDetail> BankDetails { get; set; }
     public DbSet<Customer>  Customers { get; set; }
     public DbSet<CustomerDetail> CustomerDetails { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<ProductDetail> ProductDetails { get; set; }
+    public DbSet<Unit> Units { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    
     
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -148,6 +153,40 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
         modelBuilder.Entity<CustomerDetail>().Property(p => p.Type)
             .HasConversion(type => type.Value, value => CustomerDetailTypeEnum.FromValue(value));
         #endregion
+        
+        #region Product
+        modelBuilder.Entity<Product>().Property(p => p.SellingPrice).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<Product>().Property(p => p.PurchasePrice).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<Product>().Property(p => p.Deposit).HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<Product>().Property(p => p.Withdrawal).HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<Product>().HasOne(p => p.Category).WithMany().HasForeignKey(p => p.CategoryId);
+        modelBuilder.Entity<Product>().HasOne(p => p.Unit).WithMany().HasForeignKey(p => p.UnitId);
+        modelBuilder.Entity<Product>().HasQueryFilter(filter => !filter.IsDeleted);
+        #endregion
+        
+        #region ProductDetail
+        modelBuilder.Entity<ProductDetail>().Property(p => p.Price).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.Deposit).HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.Withdrawal).HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.BrutTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.DiscountTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.NetTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.VatTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.GrandTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.VatRate).HasColumnType("int");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.DiscountRate).HasColumnType("int");
+        #endregion
+        
+        #region Unit
+        modelBuilder.Entity<Unit>().HasQueryFilter(filter => !filter.IsDeleted);
+        #endregion
+        
+        #region Category
+        modelBuilder.Entity<Category>().HasQueryFilter(filter => !filter.IsDeleted);
+        #endregion
+       
+        
+       
     }
 
   

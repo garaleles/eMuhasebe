@@ -162,6 +162,27 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.ToTable("CashRegisterDetails");
                 });
 
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Customer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -254,6 +275,123 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.ToTable("CustomerDetails");
                 });
 
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Deposit")
+                        .HasColumnType("decimal(7,2)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PurchasePrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("UnitId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Withdrawal")
+                        .HasColumnType("decimal(7,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("UnitId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.ProductDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("BrutTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("Deposit")
+                        .HasColumnType("decimal(7,2)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DiscountRate")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("DiscountTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("GrandTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("NetTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("VatRate")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("VatTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Withdrawal")
+                        .HasColumnType("decimal(7,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductDetails");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Unit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Units");
+                });
+
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.BankDetail", b =>
                 {
                     b.HasOne("eMuhasebeServer.Domain.Entities.Bank", null)
@@ -281,6 +419,34 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Product", b =>
+                {
+                    b.HasOne("eMuhasebeServer.Domain.Entities.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("eMuhasebeServer.Domain.Entities.Unit", "Unit")
+                        .WithMany("Products")
+                        .HasForeignKey("UnitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Unit");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.ProductDetail", b =>
+                {
+                    b.HasOne("eMuhasebeServer.Domain.Entities.Product", null)
+                        .WithMany("Details")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Bank", b =>
                 {
                     b.Navigation("Details");
@@ -291,9 +457,24 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Navigation("Details");
                 });
 
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Customer", b =>
                 {
                     b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Unit", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
