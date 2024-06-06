@@ -12,7 +12,9 @@ namespace eMuhasebeServer.Application.Features.Auth.Login
         UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
         ICompanyUserRepository companyUserRepository,
-        IJwtProvider jwtProvider) : IRequestHandler<LoginCommand, Result<LoginCommandResponse>>
+        IJwtProvider jwtProvider,
+        ICacheService cacheService
+        ) : IRequestHandler<LoginCommand, Result<LoginCommandResponse>>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S6608:Prefer indexing instead of \"Enumerable\" methods on types implementing \"IList\"", Justification = "<bekleyen>")]
         public async Task<Result<LoginCommandResponse>> Handle(LoginCommand request,
@@ -72,6 +74,8 @@ namespace eMuhasebeServer.Application.Features.Auth.Login
             }
 
             var loginResponse = await jwtProvider.CreateToken(user, companyId, companies);
+            
+            cacheService.RemoveAll();
 
 
             return loginResponse;

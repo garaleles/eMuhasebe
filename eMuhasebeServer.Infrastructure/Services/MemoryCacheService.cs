@@ -26,4 +26,21 @@ public sealed class MemoryCacheService(IMemoryCache cache) : ICacheService
         cache.Remove(key);
         return true;
     }
+    
+    public void RemoveAll()
+    {
+        List<string> keys = new()
+        {
+            "cacheRegitsers",
+            "banks",
+            "invoices",
+            "products",
+            "customers",
+            
+        };
+        foreach (var key in keys)
+        {
+            cache.Remove(key);
+        }
+    }
 }

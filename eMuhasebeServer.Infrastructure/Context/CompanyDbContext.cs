@@ -94,6 +94,8 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
     public DbSet<ProductDetail> ProductDetails { get; set; }
     public DbSet<Unit> Units { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Invoice>  Invoices{ get; set; }
+    public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
     
     
 
@@ -159,6 +161,9 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
         modelBuilder.Entity<Product>().Property(p => p.PurchasePrice).HasColumnType("decimal(18,2)");
         modelBuilder.Entity<Product>().Property(p => p.Deposit).HasColumnType("decimal(7,2)");
         modelBuilder.Entity<Product>().Property(p => p.Withdrawal).HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<Product>().Property(p => p.DiscountRate).HasColumnType("int");
+        modelBuilder.Entity<Product>().Property(p => p.PurchaseDiscountRate).HasColumnType("int");
+        modelBuilder.Entity<Product>().Property(p => p.TaxRate).HasColumnType("int");
         modelBuilder.Entity<Product>().HasOne(p => p.Category).WithMany().HasForeignKey(p => p.CategoryId);
         modelBuilder.Entity<Product>().HasOne(p => p.Unit).WithMany().HasForeignKey(p => p.UnitId);
         modelBuilder.Entity<Product>().HasQueryFilter(filter => !filter.IsDeleted);
@@ -168,13 +173,14 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
         modelBuilder.Entity<ProductDetail>().Property(p => p.Price).HasColumnType("decimal(18,2)");
         modelBuilder.Entity<ProductDetail>().Property(p => p.Deposit).HasColumnType("decimal(7,2)");
         modelBuilder.Entity<ProductDetail>().Property(p => p.Withdrawal).HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.DiscountRate).HasColumnType("int");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.TaxRate).HasColumnType("int");
         modelBuilder.Entity<ProductDetail>().Property(p => p.BrutTotal).HasColumnType("decimal(18,2)");
         modelBuilder.Entity<ProductDetail>().Property(p => p.DiscountTotal).HasColumnType("decimal(18,2)");
         modelBuilder.Entity<ProductDetail>().Property(p => p.NetTotal).HasColumnType("decimal(18,2)");
-        modelBuilder.Entity<ProductDetail>().Property(p => p.VatTotal).HasColumnType("decimal(18,2)");
-        modelBuilder.Entity<ProductDetail>().Property(p => p.GrandTotal).HasColumnType("decimal(18,2)");
-        modelBuilder.Entity<ProductDetail>().Property(p => p.VatRate).HasColumnType("int");
-        modelBuilder.Entity<ProductDetail>().Property(p => p.DiscountRate).HasColumnType("int");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.TaxTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.GrandTotal).HasColumnType("decimal(18,2)"); 
+        
         #endregion
         
         #region Unit
@@ -183,6 +189,28 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
         
         #region Category
         modelBuilder.Entity<Category>().HasQueryFilter(filter => !filter.IsDeleted);
+        #endregion
+        
+        #region Invoice
+        modelBuilder.Entity<Invoice>().Property(p => p.Amount).HasColumnType("money");
+        modelBuilder.Entity<Invoice>().Property(p => p.Type)
+            .HasConversion(type => type.Value, value => InvoiceTypeEnum.FromValue(value));
+        modelBuilder.Entity<Invoice>().HasQueryFilter(filter => !filter.IsDeleted);
+        modelBuilder.Entity<Invoice>().HasQueryFilter(filter => !filter.Customer!.IsDeleted); 
+        #endregion
+        
+        #region InvoiceDetail
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.Price).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.Quantity).HasColumnType("decimal(7,2)");
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.BrutTotal).HasColumnType("money");
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.DiscountTotal).HasColumnType("money");
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.NetTotal).HasColumnType("money");
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.TaxTotal).HasColumnType("money");
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.GrandTotal).HasColumnType("money");
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.DiscountRate).HasColumnType("int");
+        modelBuilder.Entity<InvoiceDetail>().Property(p => p.TaxRate).HasColumnType("int");
+        
+        modelBuilder.Entity<InvoiceDetail>().HasQueryFilter(filter => !filter.Product!.IsDeleted);
         #endregion
        
         

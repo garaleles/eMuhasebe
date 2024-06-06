@@ -259,6 +259,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("InvoiceId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -273,6 +276,89 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.HasIndex("CustomerId");
 
                     b.ToTable("CustomerDetails");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Invoice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("money");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("InvoiceNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Invoices");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.InvoiceDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("BrutTotal")
+                        .HasColumnType("money");
+
+                    b.Property<int>("DiscountRate")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("DiscountTotal")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("GrandTotal")
+                        .HasColumnType("money");
+
+                    b.Property<Guid>("InvoiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("NetTotal")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(7,2)");
+
+                    b.Property<int>("TaxRate")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TaxTotal")
+                        .HasColumnType("money");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("InvoiceDetails");
                 });
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Product", b =>
@@ -290,6 +376,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DiscountRate")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -297,11 +386,17 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PurchaseDiscountRate")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PurchasePrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("SellingPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TaxRate")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("UnitId")
                         .HasColumnType("uniqueidentifier");
@@ -346,6 +441,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<decimal>("GrandTotal")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid?>("InvoiceId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -358,10 +456,10 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("VatRate")
+                    b.Property<int>("TaxRate")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("VatTotal")
+                    b.Property<decimal>("TaxTotal")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Withdrawal")
@@ -419,16 +517,44 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Invoice", b =>
+                {
+                    b.HasOne("eMuhasebeServer.Domain.Entities.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.InvoiceDetail", b =>
+                {
+                    b.HasOne("eMuhasebeServer.Domain.Entities.Invoice", null)
+                        .WithMany("Details")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("eMuhasebeServer.Domain.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Product", b =>
                 {
                     b.HasOne("eMuhasebeServer.Domain.Entities.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("eMuhasebeServer.Domain.Entities.Unit", "Unit")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -457,12 +583,12 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Navigation("Details");
                 });
 
-            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Category", b =>
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Customer", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Details");
                 });
 
-            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Customer", b =>
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Invoice", b =>
                 {
                     b.Navigation("Details");
                 });
@@ -470,11 +596,6 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Product", b =>
                 {
                     b.Navigation("Details");
-                });
-
-            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Unit", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

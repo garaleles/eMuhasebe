@@ -10,6 +10,7 @@ using eMuhasebeServer.Application.Features.Companies.CreateCompany;
 using eMuhasebeServer.Application.Features.Companies.UpdateCompany;
 using eMuhasebeServer.Application.Features.Customers.CreateCustomer;
 using eMuhasebeServer.Application.Features.Customers.UpdateCustomer;
+using eMuhasebeServer.Application.Features.Invoices.CreateInvoice;
 using eMuhasebeServer.Application.Features.Products.CreateProduct;
 using eMuhasebeServer.Application.Features.Products.UpdateProduct;
 using eMuhasebeServer.Application.Features.Units.CreateUnits;
@@ -66,17 +67,38 @@ namespace eMuhasebeServer.Application.Mapping
             
             CreateMap<CreateCategoryCommand, Category>();
             CreateMap<UpdateCategoryCommand, Category>();
-            
-            
-            
 
-
-
-
-
-
-        }
+             CreateMap<CreateInvoiceCommand, Invoice>()
+            .ForMember(member => member.Type, options =>
+            {
+                options.MapFrom(map => InvoiceTypeEnum.FromValue(map.TypeValue));
+            })
+            .ForMember(member => member.Details, options =>
+            {
+                options.MapFrom(map => map.Details.Select(s => new InvoiceDetail()
+                {
+                    ProductId = s.ProductId,
+                    Quantity = s.Quantity,
+                    Price = s.Price,
+                    DiscountRate = s.DiscountRate,
+                    TaxRate = s.TaxRate,
+                    BrutTotal = s.Price * s.Quantity,
+                    DiscountTotal = s.Price * s.Quantity * s.DiscountRate / 100,
+                    NetTotal = (s.Price * s.Quantity) - (s.Price * s.Quantity * s.DiscountRate / 100),
+                    TaxTotal = ((s.Price * s.Quantity) - (s.Price * s.Quantity * s.DiscountRate / 100)) * s.TaxRate / 100,
+                    GrandTotal = ((s.Price * s.Quantity) - (s.Price * s.Quantity * s.DiscountRate / 100)) + (((s.Price * s.Quantity) - (s.Price * s.Quantity * s.DiscountRate / 100)) * s.TaxRate / 100)
+                }).ToList());
+            })
+            .ForMember(member => member.Amount, options =>
+            {
+                options.MapFrom(map => map.Details.Sum(detail =>
+                  detail.GrandTotal // grandTotal
+                ));
+            });
     }
 }
+    
+}
+
 
 

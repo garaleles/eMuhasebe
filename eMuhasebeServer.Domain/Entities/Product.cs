@@ -10,6 +10,9 @@ public sealed class Product: Entity
     public decimal PurchasePrice { get; set; }
     public decimal Deposit { get; set; }//Ürünün giriş miktarı
     public decimal Withdrawal { get; set; }//Ürünün çıkış miktarı
+    public int DiscountRate { get; set; }
+    public int PurchaseDiscountRate { get; set; }
+    public int TaxRate { get; set; }
     public Guid CategoryId { get; set; } // Foreign Key (Yabancı Anahtar)
     public Guid UnitId { get; set; } // Foreign Key (Yabancı Anahtar)
    
