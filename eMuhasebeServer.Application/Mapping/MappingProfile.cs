@@ -10,6 +10,8 @@ using eMuhasebeServer.Application.Features.Companies.CreateCompany;
 using eMuhasebeServer.Application.Features.Companies.UpdateCompany;
 using eMuhasebeServer.Application.Features.Customers.CreateCustomer;
 using eMuhasebeServer.Application.Features.Customers.UpdateCustomer;
+using eMuhasebeServer.Application.Features.Expenses.CreateExpenses;
+using eMuhasebeServer.Application.Features.Expenses.UpdateExpenses;
 using eMuhasebeServer.Application.Features.Invoices.CreateInvoice;
 using eMuhasebeServer.Application.Features.Products.CreateProduct;
 using eMuhasebeServer.Application.Features.Products.UpdateProduct;
@@ -95,7 +97,23 @@ namespace eMuhasebeServer.Application.Mapping
                   detail.GrandTotal // grandTotal
                 ));
             });
-    }
+
+
+             CreateMap<CreateExpenseCommand, Expense>()
+                 .ForMember(member => member.CurrencyType, options =>
+                 {
+                     options.MapFrom(map => CurrencyTypeEnum.FromValue(map.CurrencyTypeValue));
+                 });  
+                
+             CreateMap<UpdateExpenseCommand, Expense>()
+                 .ForMember(member => member.CurrencyType, options =>
+                 {
+                     options.MapFrom(map => CurrencyTypeEnum.FromValue(map.CurrencyTypeValue));
+                 });
+
+
+        }
+        
 }
     
 }

@@ -96,6 +96,8 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
     public DbSet<Category> Categories { get; set; }
     public DbSet<Invoice>  Invoices{ get; set; }
     public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
+    public DbSet<Expense> Expenses { get; set; }
+    public DbSet<ExpenseDetail> ExpenseDetails { get; set; }
     
     
 
@@ -211,6 +213,21 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
         modelBuilder.Entity<InvoiceDetail>().Property(p => p.TaxRate).HasColumnType("int");
         
         modelBuilder.Entity<InvoiceDetail>().HasQueryFilter(filter => !filter.Product!.IsDeleted);
+        #endregion
+
+        #region Expense
+        modelBuilder.Entity<Expense>().Property(p => p.WithdrawalAmount).HasColumnType("money");
+        modelBuilder.Entity<Expense>().Property(p => p.CurrencyType)
+            .HasConversion(type => type.Value, value => CurrencyTypeEnum.FromValue(value));
+        modelBuilder.Entity<Expense>()
+            .HasMany(p => p.Details)
+            .WithOne()
+            .HasForeignKey(p => p.ExpenseId);
+        modelBuilder.Entity<Expense>().HasQueryFilter(filter => !filter.IsDeleted);
+        #endregion
+        
+        #region ExpenseDetail
+        modelBuilder.Entity<ExpenseDetail>().Property(p => p.WithdrawalAmount).HasColumnType("money");
         #endregion
        
         

@@ -81,6 +81,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("ExpenseDetailId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -148,6 +151,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ExpenseDetailId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -276,6 +282,72 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.HasIndex("CustomerId");
 
                     b.ToTable("CustomerDetails");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Expense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CurrencyType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("WithdrawalAmount")
+                        .HasColumnType("money");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.ExpenseDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BankDetailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CashRegisterDetailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ExpenseDetailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ExpenseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("WithdrawalAmount")
+                        .HasColumnType("money");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpenseId");
+
+                    b.ToTable("ExpenseDetails");
                 });
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Invoice", b =>
@@ -517,6 +589,15 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.ExpenseDetail", b =>
+                {
+                    b.HasOne("eMuhasebeServer.Domain.Entities.Expense", null)
+                        .WithMany("Details")
+                        .HasForeignKey("ExpenseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Invoice", b =>
                 {
                     b.HasOne("eMuhasebeServer.Domain.Entities.Customer", "Customer")
@@ -584,6 +665,11 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                 });
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Expense", b =>
                 {
                     b.Navigation("Details");
                 });
