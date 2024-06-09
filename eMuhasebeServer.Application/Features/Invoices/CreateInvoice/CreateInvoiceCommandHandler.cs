@@ -43,6 +43,7 @@ internal sealed class CreateInvoiceCommandHandler(
         {
             CustomerId = customer.Id,
             Date = request.Date,
+            ProcessNumber = request.InvoiceNumber,
             DepositAmount = request.TypeValue == 2 ? invoice.Amount : 0,
             WithdrawalAmount = request.TypeValue == 1 ? invoice.Amount : 0,
             Description = invoice.InvoiceNumber + " Numaralı " + invoice.Type.Name,
@@ -67,6 +68,7 @@ internal sealed class CreateInvoiceCommandHandler(
             {
                 ProductId = product.Id,
                 Date = request.Date,
+                InvoiceNumber = request.InvoiceNumber,
                 Description = invoice.InvoiceNumber + " Numaralı " + invoice.Type.Name,
                 Deposit = request.TypeValue == 1 ? item.Quantity : 0,
                 Withdrawal = request.TypeValue == 2 ? item.Quantity : 0,

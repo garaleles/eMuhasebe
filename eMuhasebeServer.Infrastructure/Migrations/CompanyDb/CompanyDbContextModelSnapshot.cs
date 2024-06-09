@@ -68,6 +68,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<Guid?>("CashRegisterDetailId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CollectionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("CustomerDetailId")
                         .HasColumnType("uniqueidentifier");
 
@@ -86,6 +89,13 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<Guid?>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProcessNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("WithdrawalAmount")
                         .HasColumnType("money");
@@ -139,6 +149,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<Guid>("CashRegisterId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CollectionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("CustomerDetailId")
                         .HasColumnType("uniqueidentifier");
 
@@ -157,6 +170,13 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<Guid?>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProcessNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("WithdrawalAmount")
                         .HasColumnType("money");
@@ -252,6 +272,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<Guid?>("CashRegisterDetailId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CollectionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
@@ -270,6 +293,13 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<Guid?>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProcessNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -339,6 +369,10 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProcessNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("WithdrawalAmount")
                         .HasColumnType("money");
@@ -515,6 +549,10 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
 
                     b.Property<Guid?>("InvoiceId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("InvoiceNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

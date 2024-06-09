@@ -5,6 +5,7 @@ namespace eMuhasebeServer.Application.Features.ExpenseDetails.CreateExpenseDetai
 
 public sealed record CreateExpenseDetailCommand(
     Guid ExpenseId,
+    string ProcessNumber,
     DateOnly Date,
     decimal Amount,
     Guid? OppositeBankId,

@@ -6,6 +6,7 @@ public sealed class ProductDetail: Entity
 {
     public Guid ProductId { get; set; }
     public DateOnly Date { get; set; }
+    public string InvoiceNumber { get; set; }=string.Empty;
     public string Description { get; set; }=string.Empty;
     public decimal Price { get; set; }
     public decimal Deposit { get; set; }//Ürünün giriş miktarı

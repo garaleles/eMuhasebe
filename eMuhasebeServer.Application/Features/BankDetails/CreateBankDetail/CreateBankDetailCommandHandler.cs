@@ -28,6 +28,7 @@ internal sealed class CreateBankDetailCommandHandler(
         BankDetail bankDetail = new()
         {
             Date = request.Date,
+            ProcessNumber = request.ProcessNumber,
             DepositAmount = request.Type == 0 ? request.Amount : 0,
             WithdrawalAmount = request.Type == 1 ? request.Amount : 0,
             Description = request.Description,
@@ -46,6 +47,7 @@ internal sealed class CreateBankDetailCommandHandler(
             BankDetail oppositeBankDetail = new()
             {
                 Date = request.Date,
+                ProcessNumber = request.ProcessNumber,
                 DepositAmount = request.Type == 1 ? request.OppositeAmount : 0,
                 WithdrawalAmount = request.Type == 0 ? request.OppositeAmount : 0,
                 BankDetailId = bankDetail.Id,
@@ -56,6 +58,7 @@ internal sealed class CreateBankDetailCommandHandler(
             bankDetail.BankDetailId = oppositeBankDetail.Id;
 
             await bankDetailRepository.AddAsync(oppositeBankDetail, cancellationToken);
+            cacheService.Remove("banks");
         }
         if (request.OppositeCashRegisterId is not null)
         {
@@ -67,6 +70,7 @@ internal sealed class CreateBankDetailCommandHandler(
             CashRegisterDetail oppositeCashRegisterDetail = new()
             {
                 Date = request.Date,
+                ProcessNumber = request.ProcessNumber,
                 DepositAmount = request.Type == 1 ? request.OppositeAmount : 0,
                 WithdrawalAmount = request.Type == 0 ? request.OppositeAmount : 0,
                 BankDetailId = bankDetail.Id,
@@ -95,6 +99,7 @@ internal sealed class CreateBankDetailCommandHandler(
             CustomerDetail customerDetail = new()
             {
                 CustomerId = customer.Id,
+                ProcessNumber = request.ProcessNumber,
                 BankDetailId = bankDetail.Id,
                 Date = request.Date,
                 Description = request.Description,

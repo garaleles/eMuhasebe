@@ -6,6 +6,7 @@ namespace eMuhasebeServer.Application.Features.CashRegisterDetails.CreateCashReg
 
 public sealed record CreateCashRegisterDetailCommand(
     Guid CashRegisterId,
+    string ProcessNumber,
     DateOnly Date,
     int Type,
     decimal Amount,

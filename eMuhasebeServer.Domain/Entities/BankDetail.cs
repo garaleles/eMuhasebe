@@ -5,6 +5,9 @@ namespace eMuhasebeServer.Domain.Entities;
 public sealed class BankDetail : Entity
 {
     public Guid BankId { get; set; }
+    public string ProcessNumber { get; set; } = string.Empty;
+    public Guid? CollectionId { get; set; }
+    public Guid? PaymentId { get; set; }
     public DateOnly Date { get; set; }
     public string Description { get; set; } = string.Empty;
     public decimal DepositAmount { get; set; } //Giriş

@@ -98,6 +98,8 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
     public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
     public DbSet<Expense> Expenses { get; set; }
     public DbSet<ExpenseDetail> ExpenseDetails { get; set; }
+  
+    
     
     
 
@@ -230,6 +232,7 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
         modelBuilder.Entity<ExpenseDetail>().Property(p => p.WithdrawalAmount).HasColumnType("money");
         #endregion
        
+     
         
        
     }

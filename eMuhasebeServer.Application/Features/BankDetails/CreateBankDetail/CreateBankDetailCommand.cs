@@ -6,6 +6,7 @@ namespace eMuhasebeServer.Application.Features.BankDetails.CreateBankDetail;
 
 public record CreateBankDetailCommand(
     Guid BankId,
+    string ProcessNumber,
     DateOnly Date,
     int Type,
     decimal Amount,

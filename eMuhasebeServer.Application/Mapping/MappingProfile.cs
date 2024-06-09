@@ -111,6 +111,12 @@ namespace eMuhasebeServer.Application.Mapping
                      options.MapFrom(map => CurrencyTypeEnum.FromValue(map.CurrencyTypeValue));
                  });
 
+           
+
+
+
+
+
 
         }
         

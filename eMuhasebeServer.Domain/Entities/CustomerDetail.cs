@@ -6,6 +6,7 @@ namespace eMuhasebeServer.Domain.Entities;
 public sealed class CustomerDetail: Entity
 {
     public Guid CustomerId { get; set; }
+    public string ProcessNumber { get; set; } = string.Empty;
     public DateOnly Date { get; set; }
     public CustomerDetailTypeEnum Type { get; set; }=CustomerDetailTypeEnum.CashRegister;
     public string Description { get; set; } = string.Empty;
@@ -14,6 +15,8 @@ public sealed class CustomerDetail: Entity
     public Guid? BankDetailId { get; set; }
     public Guid? CashRegisterDetailId { get; set; }
     public Guid? InvoiceId { get; set; }
+    public Guid? CollectionId { get; set; }
+    public Guid? PaymentId { get; set; }
 
     
 }

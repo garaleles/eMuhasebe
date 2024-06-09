@@ -29,6 +29,7 @@ internal sealed class CreateExpenseDetailCommandHandler(
         ExpenseDetail expenseDetail = new()
         {
             Date = request.Date,
+            ProcessNumber = request.ProcessNumber,
             WithdrawalAmount = request.Amount,
             Description = request.Description,
             ExpenseId = request.ExpenseId
@@ -47,6 +48,7 @@ internal sealed class CreateExpenseDetailCommandHandler(
             BankDetail bankDetail = new()
             {
                 Date = request.Date,
+                ProcessNumber = request.ProcessNumber,
                 WithdrawalAmount = request.OppositeAmount,
                 ExpenseDetailId = expenseDetail.Id,
                 Description = request.Description,
@@ -70,6 +72,7 @@ internal sealed class CreateExpenseDetailCommandHandler(
             CashRegisterDetail cashRegisterDetail = new()
             {
                 Date = request.Date,
+                ProcessNumber = request.ProcessNumber,
                 WithdrawalAmount = request.OppositeAmount,
                 ExpenseDetailId = expenseDetail.Id,
                 Description = request.Description,

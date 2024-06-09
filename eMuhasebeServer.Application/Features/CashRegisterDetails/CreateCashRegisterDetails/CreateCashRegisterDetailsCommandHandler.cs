@@ -28,6 +28,7 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
         CashRegisterDetail cashRegisterDetail = new()
         {
             Date = request.Date,
+            ProcessNumber = request.ProcessNumber,
             DepositAmount = request.Type == 0 ? request.Amount : 0,
             WithdrawalAmount = request.Type == 1 ? request.Amount : 0,
             Description = request.Description,
@@ -46,6 +47,7 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
             CashRegisterDetail oppositeCashRegisterDetail = new()
             {
                 Date = request.Date,
+                ProcessNumber = request.ProcessNumber,
                 DepositAmount = request.Type == 1 ? request.OppositeAmount : 0,
                 WithdrawalAmount = request.Type == 0 ? request.OppositeAmount : 0,
                 CashRegisterDetailId = cashRegisterDetail.Id,
@@ -68,6 +70,7 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
             BankDetail oppositeBankDetail = new()
             {
                 Date = request.Date,
+                ProcessNumber = request.ProcessNumber,
                 DepositAmount = request.Type == 1 ? request.OppositeAmount : 0,
                 WithdrawalAmount = request.Type == 0 ? request.OppositeAmount : 0,
                 CashRegisterDetailId = cashRegisterDetail.Id,
@@ -95,6 +98,7 @@ internal sealed class CreateCashRegisterDetailsCommandHandler(
             CustomerDetail customerDetail = new()
             {
                 CustomerId = customer.Id,
+                ProcessNumber = request.ProcessNumber,
                 CashRegisterDetailId = cashRegisterDetail.Id,
                 Date = request.Date,
                 Description = request.Description,

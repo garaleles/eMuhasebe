@@ -5,6 +5,7 @@ namespace eMuhasebeServer.Domain.Entities;
 public sealed class CashRegisterDetail : Entity
 {
     public Guid CashRegisterId { get; set; }
+    public string ProcessNumber { get; set; } = string.Empty;
     public DateOnly Date { get; set; }
     public string Description { get; set; } = string.Empty;
     public decimal DepositAmount { get; set; } //Giriş
@@ -14,6 +15,8 @@ public sealed class CashRegisterDetail : Entity
     public Guid? BankDetailId { get; set; }
     public Guid? CustomerDetailId { get; set; }
     public Guid? ExpenseDetailId { get; set; }
+    public Guid? CollectionId { get; set; }
+    public Guid? PaymentId { get; set; }
     
   
 
