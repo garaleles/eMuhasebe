@@ -12,16 +12,25 @@ internal sealed class GetAllExpenseDetailsQueryHandler(
 {
     public async Task<Result<Expense>> Handle(GetAllExpenseDetailsQuery request, CancellationToken cancellationToken)
     {
-        Expense? expense =
-            await expenseRepository
-                .Where(p => p.Id == request.ExpenseId)
-                .Include(p => Enumerable.Where<ExpenseDetail>(p.Details!, p => p.Date >= request.StartDate && p.Date <= request.EndDate))
-                .FirstOrDefaultAsync(cancellationToken);
+        var query = expenseRepository.Where(p => p.Id == request.ExpenseId);
+
+        // Tarih filtrelemesi (daha sağlam)
+        if (!request.StartDate.Equals(default(DateOnly)) && !request.EndDate.Equals(default(DateOnly)))
+        {
+            query = query.Include(p => p.Details!
+                .OrderBy(d => d.Date)
+                .Where(d => d.Date >= request.StartDate && d.Date <= request.EndDate));
+        }
+        else
+        {
+            query = query.Include(p => p.Details!.OrderBy(d => d.Date)); // Artan tarihe göre sıralama
+        }
+
+        Expense? expense = await query.FirstOrDefaultAsync(cancellationToken);
 
         if (expense is null)
         {
-            return Result<Expense>.Failure("Gider bulunamadı");
-
+            return Result<Expense>.Failure("Gider hareketi bulunamadı");
         }
 
         return expense;

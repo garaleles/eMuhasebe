@@ -11,10 +11,10 @@ internal sealed class GetAllCustomerDetailsQueryHandler(
 {
     public async Task<Result<Customer>> Handle(GetAllCustomerDetailsQuery request, CancellationToken cancellationToken)
     {
-        Customer? customer = 
+        Customer? customer =
             await customerRepository
                 .Where(p => p.Id == request.CustomerId)
-                .Include(p=> p.Details)
+                .Include(p => p.Details!.OrderBy(d => d.Date)) // Artan tarihe göre sıralama
                 .FirstOrDefaultAsync(cancellationToken);
 
         if(customer is null)

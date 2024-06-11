@@ -11,15 +11,25 @@ internal sealed class GetAllCashRegisterDetailsQueryHandler(
 {
     public async Task<Result<CashRegister>> Handle(GetAllCashRegisterDetailsQuery request, CancellationToken cancellationToken)
     {
-        CashRegister? cashRegister =
-            await cashRegisterRepository
-                .Where(p => p.Id == request.CashRegisterId)
-                .Include(p => p.Details!.Where(p => p.Date >= request.StartDate && p.Date <= request.EndDate))
-                .FirstOrDefaultAsync(cancellationToken);
+        var query = cashRegisterRepository.Where(p => p.Id == request.CashRegisterId);
+
+        // Tarih filtrelemesi (daha sağlam)
+        if (!request.StartDate.Equals(default(DateOnly)) && !request.EndDate.Equals(default(DateOnly)))
+        {
+            query = query.Include(p => p.Details!
+                .OrderBy(d => d.Date)
+                .Where(d => d.Date >= request.StartDate && d.Date <= request.EndDate));
+        }
+        else
+        {
+            query = query.Include(p => p.Details!.OrderBy(d => d.Date)); // Artan tarihe göre sıralama
+        }
+
+        CashRegister? cashRegister = await query.FirstOrDefaultAsync(cancellationToken);
 
         if (cashRegister is null)
         {
-            return Result<CashRegister>.Failure("Kasa bulunamadı");
+            return Result<CashRegister>.Failure("Kasa hareketi bulunamadı");
         }
 
         return cashRegister;
