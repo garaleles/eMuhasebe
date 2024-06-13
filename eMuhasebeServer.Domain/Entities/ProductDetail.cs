@@ -18,8 +18,11 @@ public sealed class ProductDetail: Entity
     public decimal NetTotal { get; set; }
     public decimal TaxTotal { get; set; }
     public decimal GrandTotal { get; set; }
-  
+    public Guid? InvoiceDetailId { get; set; }
     public Guid? InvoiceId { get; set; }
+    public Invoice? Invoice { get; set; }
+   
+    public List<ProductDetail>? Details { get; set; }
     
     
     

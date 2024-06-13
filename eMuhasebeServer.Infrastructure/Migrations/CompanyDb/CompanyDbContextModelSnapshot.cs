@@ -446,6 +446,12 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid?>("ProductDetailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProductDetailId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
@@ -461,6 +467,8 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.HasKey("Id");
 
                     b.HasIndex("InvoiceId");
+
+                    b.HasIndex("ProductDetailId1");
 
                     b.HasIndex("ProductId");
 
@@ -547,6 +555,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<decimal>("GrandTotal")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid?>("InvoiceDetailId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("InvoiceId")
                         .HasColumnType("uniqueidentifier");
 
@@ -563,6 +574,9 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid?>("ProductDetailId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
@@ -576,6 +590,10 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .HasColumnType("decimal(7,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.HasIndex("ProductDetailId");
 
                     b.HasIndex("ProductId");
 
@@ -655,6 +673,10 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("eMuhasebeServer.Domain.Entities.ProductDetail", "ProductDetail")
+                        .WithMany()
+                        .HasForeignKey("ProductDetailId1");
+
                     b.HasOne("eMuhasebeServer.Domain.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
@@ -662,6 +684,8 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                         .IsRequired();
 
                     b.Navigation("Product");
+
+                    b.Navigation("ProductDetail");
                 });
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Product", b =>
@@ -685,11 +709,21 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.ProductDetail", b =>
                 {
+                    b.HasOne("eMuhasebeServer.Domain.Entities.Invoice", "Invoice")
+                        .WithMany()
+                        .HasForeignKey("InvoiceId");
+
+                    b.HasOne("eMuhasebeServer.Domain.Entities.ProductDetail", null)
+                        .WithMany("Details")
+                        .HasForeignKey("ProductDetailId");
+
                     b.HasOne("eMuhasebeServer.Domain.Entities.Product", null)
                         .WithMany("Details")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Invoice");
                 });
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Bank", b =>
@@ -718,6 +752,11 @@ namespace eMuhasebeServer.Infrastructure.Migrations.CompanyDb
                 });
 
             modelBuilder.Entity("eMuhasebeServer.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("eMuhasebeServer.Domain.Entities.ProductDetail", b =>
                 {
                     b.Navigation("Details");
                 });

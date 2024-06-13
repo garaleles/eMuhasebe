@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Auth\ChangeCompany\" />
+    <Folder Include="Features\ExpensesDashboards\" />
   </ItemGroup>
 
 </Project>
