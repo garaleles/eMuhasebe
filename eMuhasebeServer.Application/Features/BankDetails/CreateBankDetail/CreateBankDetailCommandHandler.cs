@@ -36,6 +36,7 @@ internal sealed class CreateBankDetailCommandHandler(
         };
 
         await bankDetailRepository.AddAsync(bankDetail, cancellationToken);
+        cacheService.Remove("banks");
 
         if (request.OppositeBankId is not null)
         {

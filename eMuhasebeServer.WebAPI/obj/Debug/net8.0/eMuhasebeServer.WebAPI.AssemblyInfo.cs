@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eMuhasebeServer.WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdcf6fa29dcb0f11d36ab31126ff5146eefa4506")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7d89db7a8b08f707056b47eb4347acf960c5348")]
 [assembly: System.Reflection.AssemblyProductAttribute("eMuhasebeServer.WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eMuhasebeServer.WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
