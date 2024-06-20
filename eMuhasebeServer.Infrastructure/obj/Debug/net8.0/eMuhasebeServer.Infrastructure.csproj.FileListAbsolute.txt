@@ -16,3 +16,5 @@ C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Inf
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Infrastructure\obj\Debug\net8.0\eMuhasebeServer.Infrastructure.pdb
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Infrastructure\obj\Debug\net8.0\ref\eMuhasebeServer.Infrastructure.dll
 C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Infrastructure\obj\Debug\net8.0\eMuhasebeServer.Infrastructure.sourcelink.json
+C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Infrastructure\bin\Debug\net8.0\eMuhasebeServer.Infrastructure.runtimeconfig.json
+C:\Users\seley\OneDrive\Masaüstü\eMuhasebe\eMuhasebeServer\eMuhasebeServer.Infrastructure\obj\Debug\net8.0\eMuhasebeServer.Infrastructure.genruntimeconfig.cache

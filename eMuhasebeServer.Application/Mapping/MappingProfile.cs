@@ -19,6 +19,7 @@ using eMuhasebeServer.Application.Features.Units.CreateUnits;
 using eMuhasebeServer.Application.Features.Units.UpdateUnits;
 using eMuhasebeServer.Application.Features.Users.CreateUser;
 using eMuhasebeServer.Application.Features.Users.UpdateUser;
+using eMuhasebeServer.Domain.DTOs;
 using eMuhasebeServer.Domain.Entities;
 using eMuhasebeServer.Domain.Enums;
 
@@ -110,19 +111,19 @@ namespace eMuhasebeServer.Application.Mapping
                  {
                      options.MapFrom(map => CurrencyTypeEnum.FromValue(map.CurrencyTypeValue));
                  });
+             
+        
+            
+           
+        }
 
            
-
-
-
-
-
 
         }
         
 }
     
-}
+
 
 
 

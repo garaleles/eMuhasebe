@@ -17,7 +17,7 @@ public sealed class InvoiceDetail: Entity
     public decimal TaxTotal { get; set; }
     public decimal GrandTotal { get; set; }
     
-    public Guid? ProductDetailId { get; set; }
+   // public Guid? ProductDetailId { get; set; }
     public ProductDetail? ProductDetail { get; set; }
     
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ri7agxBs1fqlSvFELMZRgqm+q9xQRwvQPnZ0dk7GeblmYS/5CyP+3oL1HpsdIEvPes45ZXanUbLtUYKTkGV/Ng==",
+  "dgSpecHash": "xWILddVVrVdOBS60Z+taCmZAS7ULdgXpvwDpW7gpHx5lUvBpfBgDNCYInA696FUs96/x7H+vrhc3563br6vqTA==",
   "success": true,
   "projectFilePath": "C:\\Users\\seley\\OneDrive\\Masaüstü\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj",
   "expectedPackageFiles": [
@@ -51,6 +51,7 @@
     "C:\\Users\\seley\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\seley\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\seley\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\seley\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\seley\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\seley\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\seley\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
