@@ -18,6 +18,7 @@ public class Check : Entity
     public string? Creditor { get; set; }
     public string? Endorser { get; set; }
     public Guid? CheckDetailId { get; set; } // Nullable
+<<<<<<< HEAD
 
     public Guid? CheckRegisterPayrollDetailId { get; set; }
     public CheckRegisterPayrollDetail? CheckRegisterPayrollDetail { get; set; }
@@ -27,3 +28,14 @@ public class Check : Entity
     public ChequeissuePayroll? ChequeissuePayroll { get; set; } // Nullable
 }
 
+=======
+    public CheckDetail? CheckDetail { get; set; } // Nullable
+    
+    public Guid? CheckRegisterPayrollDetailId { get; set; }
+    public CheckRegisterPayrollDetail? CheckRegisterPayrollDetail { get; set; }
+
+    // Added relationship with CheckRegisterPayroll
+    public Guid? CheckRegisterPayrollId { get; set; } // Nullable
+    public CheckRegisterPayroll? CheckRegisterPayroll { get; set; } // Nullable
+}
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3

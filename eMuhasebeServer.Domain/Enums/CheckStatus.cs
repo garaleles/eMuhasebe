@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 ﻿namespace eMuhasebeServer.Domain.Enums;
+=======
+﻿using Ardalis.SmartEnum;
+using Microsoft.EntityFrameworkCore;
+
+namespace eMuhasebeServer.Domain.Enums;
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 
 
 public enum CheckStatus

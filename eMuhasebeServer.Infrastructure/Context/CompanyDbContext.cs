@@ -10,6 +10,7 @@ namespace eMuhasebeServer.Infrastructure.Context;
 
 public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
 {
+<<<<<<< HEAD
     public async Task<IDbContextTransaction> BeginTransactionAsync(
         CancellationToken cancellationToken = default
     )
@@ -24,15 +25,26 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
     {
         CreateConnectionStringWithCompany(company);
     }
+=======
 
-    public CompanyDbContext(
-        IHttpContextAccessor contextAccessor,
-        ApplicationDbContext applicationDbContext
-    )
-    {
-        CreateConnectionString(contextAccessor, applicationDbContext);
-    }
 
+    #region connection
+ private string connectionString = String.Empty;
+ public CompanyDbContext(Company company)
+ {
+     CreateConnectionStringWithCompany(company);
+ }
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
+
+ public CompanyDbContext(
+     IHttpContextAccessor contextAccessor,
+     ApplicationDbContext applicationDbContext
+ )
+ {
+     CreateConnectionString(contextAccessor, applicationDbContext);
+ }
+
+<<<<<<< HEAD
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(connectionString);
@@ -53,41 +65,68 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
         );
         if (company is null)
             return;
+=======
+ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+ {
+     optionsBuilder.UseSqlServer(connectionString);
+ }
+ 
+ private void CreateConnectionString(
+     IHttpContextAccessor contextAccessor,
+     ApplicationDbContext applicationDbContext
+ )
+ {
+     if (contextAccessor.HttpContext is null)
+         return;
+     string? companyId = contextAccessor.HttpContext.User.FindFirstValue("CompanyId");
+     if (string.IsNullOrEmpty(companyId))
+         return;
+     Company? company = applicationDbContext.Companies.FirstOrDefault(x =>
+         x.Id == Guid.Parse(companyId)
+     );
+     if (company is null)
+         return;
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 
-        CreateConnectionStringWithCompany(company);
-    }
+     CreateConnectionStringWithCompany(company);
+ }
 
-    private void CreateConnectionStringWithCompany(Company company)
-    {
-        if (string.IsNullOrEmpty(company.Database.UserId))
-        {
-            connectionString =
-                $"Data Source={company.Database.Server};"
-                + $"Initial Catalog={company.Database.DatabaseName};"
-                + "Integrated Security=True;"
-                + "Connect Timeout=30;"
-                + "Encrypt=True;"
-                + "Trust Server Certificate=true;"
-                + "Application Intent=ReadWrite;"
-                + "Multi Subnet Failover=False";
-        }
-        else
-        {
-            connectionString =
-                $"Data Source={company.Database.Server};"
-                + $"Initial Catalog={company.Database.DatabaseName};"
-                + "Integrated Security=False;"
-                + $"User Id={company.Database.UserId};"
-                + $"Password={company.Database.Password};"
-                + "Connect Timeout=30;"
-                + "Encrypt=True;"
-                + "Trust Server Certificate=true;"
-                + "Application Intent=ReadWrite;"
-                + "Multi Subnet Failover=False";
-        }
-    }
+ private void CreateConnectionStringWithCompany(Company company)
+ {
+     if (string.IsNullOrEmpty(company.Database.UserId))
+     {
+         connectionString =
+             $"Data Source={company.Database.Server};"
+             + $"Initial Catalog={company.Database.DatabaseName};"
+             + "Integrated Security=True;"
+             + "Connect Timeout=30;"
+             + "Encrypt=True;"
+             + "Trust Server Certificate=true;"
+             + "Application Intent=ReadWrite;"
+             + "Multi Subnet Failover=False";
+     }
+     else
+     {
+         connectionString =
+             $"Data Source={company.Database.Server};"
+             + $"Initial Catalog={company.Database.DatabaseName};"
+             + "Integrated Security=False;"
+             + $"User Id={company.Database.UserId};"
+             + $"Password={company.Database.Password};"
+             + "Connect Timeout=30;"
+             + "Encrypt=True;"
+             + "Trust Server Certificate=true;"
+             + "Application Intent=ReadWrite;"
+             + "Multi Subnet Failover=False";
+     }
+ }
 
+ #endregion
+
+<<<<<<< HEAD
     #endregion
+=======
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 
         
     public DbSet<CashRegister> CashRegisters { get; set; }
@@ -109,8 +148,15 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
     public DbSet<CompanyCheckAccount> CompanyCheckAccounts { get; set; }
     public DbSet<CheckRegisterPayroll> CheckRegisterPayrolls { get; set; }
     public DbSet<CheckRegisterPayrollDetail> CheckRegisterPayrollDetails { get; set; }
+<<<<<<< HEAD
     public DbSet<ChequeissuePayrollDetail> ChequeissuePayrollDetails { get; set; }
     public DbSet<ChequeissuePayroll> ChequeissuePayrolls { get; set; }
+=======
+
+
+
+
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -220,6 +266,7 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
             .HasColumnType("decimal(7,2)");
         modelBuilder.Entity<ProductDetail>().Property(p => p.DiscountRate).HasColumnType("int");
         modelBuilder.Entity<ProductDetail>().Property(p => p.TaxRate).HasColumnType("int");
+<<<<<<< HEAD
         modelBuilder
             .Entity<ProductDetail>()
             .Property(p => p.BrutTotal)
@@ -240,6 +287,13 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
             .Entity<ProductDetail>()
             .Property(p => p.GrandTotal)
             .HasColumnType("decimal(18,2)");
+=======
+        modelBuilder.Entity<ProductDetail>().Property(p => p.BrutTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.DiscountTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.NetTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.TaxTotal).HasColumnType("decimal(18,2)");
+        modelBuilder.Entity<ProductDetail>().Property(p => p.GrandTotal).HasColumnType("decimal(18,2)");
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 
         #endregion
 
@@ -291,6 +345,7 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
             .HasForeignKey(p => p.ExpenseId);
         modelBuilder.Entity<Expense>().HasQueryFilter(filter => !filter.IsDeleted);
         #endregion
+<<<<<<< HEAD
 
         #region ExpenseDetail
         modelBuilder
@@ -447,4 +502,96 @@ public sealed class CompanyDbContext : DbContext, IUnitOfWorkCompany
         
         #endregion
     }
+=======
+
+        #region ExpenseDetail
+        modelBuilder.Entity<ExpenseDetail>().Property(p => p.WithdrawalAmount).HasColumnType("money");
+        #endregion
+
+        #region Check
+        modelBuilder.Entity<Check>().Property(p => p.Amount).HasColumnType("money");
+        modelBuilder.Entity<Check>().HasQueryFilter(filter => !filter.IsDeleted);
+        modelBuilder.Entity<Check>()
+            .HasOne(c => c.CheckDetail)
+            .WithOne(cd => cd.Check)
+            .HasForeignKey<Check>(c => c.CheckDetailId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<Check>()
+            .HasOne(c => c.CheckRegisterPayrollDetail)
+            .WithMany(d => d.Checks)
+            .HasForeignKey(c => c.CheckRegisterPayrollDetailId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+// Added relationship with CheckRegisterPayroll
+        modelBuilder.Entity<Check>()
+            .HasOne(c => c.CheckRegisterPayroll)
+            .WithMany()
+            .HasForeignKey(c => c.CheckRegisterPayrollId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<Check>()
+            .Property(e => e.CheckType)
+            .HasConversion(
+                v => v.Value,  // Enum değerini int'e dönüştür
+                v => CheckType.FromValue(v) // int değerini enum'a dönüştür
+            );
+
+        modelBuilder.Entity<Check>()
+            .Property(e => e.Status)
+            .HasConversion<int>(); // Enum'ı int olarak kaydet
+        #endregion
+
+        #region CheckDetail
+        modelBuilder.Entity<CheckDetail>().Property(p => p.Amount).HasColumnType("money");
+        modelBuilder.Entity<CheckDetail>()
+            .HasOne(cd => cd.CheckRegisterPayrollDetail)
+            .WithMany(d => d.CheckDetails)
+            .HasForeignKey(cd => cd.CheckRegisterPayrollDetailId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        #endregion
+
+        #region CheckRegisterPayroll
+        modelBuilder.Entity<CheckRegisterPayroll>()
+            .HasKey(p => p.Id);
+        modelBuilder.Entity<CheckRegisterPayroll>()
+            .Property(p => p.PayrollAmount)
+            .HasColumnType("money");
+        modelBuilder.Entity<CheckRegisterPayroll>()
+            .Property(p => p.AverageMaturityDate)
+            .HasColumnType("date");
+        modelBuilder.Entity<CheckRegisterPayroll>()
+            .Property(p => p.Type)
+            .HasConversion(type => type.Value, value => CheckRegisterPayrollType.FromValue(value));
+        modelBuilder.Entity<CheckRegisterPayroll>()
+            .HasOne(crp => crp.Check)
+            .WithMany()
+            .HasForeignKey(crp => crp.CheckId)
+            .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity<CheckRegisterPayroll>()
+            .HasQueryFilter(filter => !filter.IsDeleted);
+      
+        #endregion
+        
+        #region CheckRegisterPayrollDetail
+        modelBuilder.Entity<CheckRegisterPayrollDetail>()
+            .Property(p => p.Amount)
+            .HasColumnType("money");
+      #endregion
+        
+        #region CompanyCheckAccount
+        modelBuilder.Entity<CheckRegisterPayrollDetail>()
+            .HasKey(p => p.Id);
+        modelBuilder.Entity<CompanyCheckAccount>()
+            .Property(p => p.Amount)
+            .HasColumnType("decimal(18, 2)");
+        ;
+
+        #endregion
+        
+    }
+
+
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 }

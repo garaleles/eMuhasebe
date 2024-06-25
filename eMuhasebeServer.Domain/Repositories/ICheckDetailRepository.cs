@@ -1,5 +1,6 @@
 ﻿using eMuhasebeServer.Domain.Entities;
 using GenericRepository;
+<<<<<<< HEAD
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
 
@@ -14,3 +15,12 @@ public interface ICheckDetailRepository : IRepository<CheckDetail>
     EntityEntry<CheckDetail> Entry(CheckDetail entity);
 
 }
+=======
+
+namespace eMuhasebeServer.Domain.Repositories;
+
+public interface ICheckDetailRepository: IRepository<CheckDetail>
+{
+    
+}
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3

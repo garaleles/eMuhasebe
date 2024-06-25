@@ -6,6 +6,10 @@ using TS.Result;
 namespace eMuhasebeServer.Application.Features.CheckRegisterPayrolls.CreateCheckRegisterPayroll;
 
 public sealed record CreateCheckRegisterPayrollCommand(
+<<<<<<< HEAD
+=======
+    int TypeValue,
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
     DateOnly Date,
     string PayrollNumber,
     Guid? CustomerId,

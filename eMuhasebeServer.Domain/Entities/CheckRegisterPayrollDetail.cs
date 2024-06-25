@@ -7,6 +7,10 @@ namespace eMuhasebeServer.Domain.Entities;
 public class CheckRegisterPayrollDetail : Entity
 {
     public Guid CheckRegisterPayrollId { get; set; }
+<<<<<<< HEAD
+=======
+   // public CheckRegisterPayroll? CheckRegisterPayroll { get; set; } // Navigation property can be made optional if needed
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
     public string CheckNumber { get; set; } = string.Empty;
     public string BankName { get; set; } = string.Empty;
     public string BranchName { get; set; } = string.Empty;

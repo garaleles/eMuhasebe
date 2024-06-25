@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "jfKPG/22VVo=",
+=======
+  "dgSpecHash": "MUB34D6qQKPUJkS33O7nVq8LFitrgUGxDj8zC9U+IOcZz2dtKTGyu5F8xGzTAXXdliiYXC35FtjUW9dRT4PFJg==",
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
   "success": true,
   "projectFilePath": "C:\\Users\\seley\\OneDrive\\Masaüstü\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Infrastructure\\eMuhasebeServer.Infrastructure.csproj",
   "expectedPackageFiles": [

@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3A9EBAB9-B151-411E-94FC-F8B333C8FAB3}|eMuhasebeServer.Infrastructure\\eMuhasebeServer.Infrastructure.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.infrastructure\\context\\companydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A9EBAB9-B151-411E-94FC-F8B333C8FAB3}|eMuhasebeServer.Infrastructure\\eMuhasebeServer.Infrastructure.csproj|solutionrelative:emuhasebeserver.infrastructure\\context\\companydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A9EBAB9-B151-411E-94FC-F8B333C8FAB3}|eMuhasebeServer.Infrastructure\\eMuhasebeServer.Infrastructure.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.infrastructure\\services\\companyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A9EBAB9-B151-411E-94FC-F8B333C8FAB3}|eMuhasebeServer.Infrastructure\\eMuhasebeServer.Infrastructure.csproj|solutionrelative:emuhasebeserver.infrastructure\\services\\companyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3746EFB7-8933-40D6-A14D-2C5D403092C9}|eMuhasebeServer.Domain\\eMuhasebeServer.Domain.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.domain\\enums\\checkstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3746EFB7-8933-40D6-A14D-2C5D403092C9}|eMuhasebeServer.Domain\\eMuhasebeServer.Domain.csproj|solutionrelative:emuhasebeserver.domain\\enums\\checkstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3746EFB7-8933-40D6-A14D-2C5D403092C9}|eMuhasebeServer.Domain\\eMuhasebeServer.Domain.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.domain\\entities\\check.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3746EFB7-8933-40D6-A14D-2C5D403092C9}|eMuhasebeServer.Domain\\eMuhasebeServer.Domain.csproj|solutionrelative:emuhasebeserver.domain\\entities\\check.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC2BDB4F-E5D1-4AEC-A0F7-C5E3C1C6642C}|eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.application\\features\\checkregisterpayrolls\\createcheckregisterpayroll\\createcheckregisterpayrollcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC2BDB4F-E5D1-4AEC-A0F7-C5E3C1C6642C}|eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj|solutionrelative:emuhasebeserver.application\\features\\checkregisterpayrolls\\createcheckregisterpayroll\\createcheckregisterpayrollcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC2BDB4F-E5D1-4AEC-A0F7-C5E3C1C6642C}|eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj|c:\\users\\seley\\onedrive\\masa\u00FCst\u00FC\\emuhasebe\\emuhasebeserver\\emuhasebeserver.application\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC2BDB4F-E5D1-4AEC-A0F7-C5E3C1C6642C}|eMuhasebeServer.Application\\eMuhasebeServer.Application.csproj|solutionrelative:emuhasebeserver.application\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +47,87 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{c6f34f0d-7ae5-4f3a-be61-fe0c21ae9eb8}"
+<<<<<<< HEAD
+=======
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CompanyService.cs",
+              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Infrastructure\\Services\\CompanyService.cs",
+              "RelativeDocumentMoniker": "eMuhasebeServer.Infrastructure\\Services\\CompanyService.cs",
+              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Infrastructure\\Services\\CompanyService.cs",
+              "RelativeToolTip": "eMuhasebeServer.Infrastructure\\Services\\CompanyService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T12:10:15.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\Mapping\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "eMuhasebeServer.Application\\Mapping\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\Mapping\\MappingProfile.cs",
+              "RelativeToolTip": "eMuhasebeServer.Application\\Mapping\\MappingProfile.cs",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAAIcAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T11:39:50.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateCheckRegisterPayrollCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\Features\\CheckRegisterPayrolls\\CreateCheckRegisterPayroll\\CreateCheckRegisterPayrollCommandHandler.cs",
+              "RelativeDocumentMoniker": "eMuhasebeServer.Application\\Features\\CheckRegisterPayrolls\\CreateCheckRegisterPayroll\\CreateCheckRegisterPayrollCommandHandler.cs",
+              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Application\\Features\\CheckRegisterPayrolls\\CreateCheckRegisterPayroll\\CreateCheckRegisterPayrollCommandHandler.cs",
+              "RelativeToolTip": "eMuhasebeServer.Application\\Features\\CheckRegisterPayrolls\\CreateCheckRegisterPayroll\\CreateCheckRegisterPayrollCommandHandler.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAxwCsAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T11:39:18.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CheckStatus.cs",
+              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Domain\\Enums\\CheckStatus.cs",
+              "RelativeDocumentMoniker": "eMuhasebeServer.Domain\\Enums\\CheckStatus.cs",
+              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Domain\\Enums\\CheckStatus.cs",
+              "RelativeToolTip": "eMuhasebeServer.Domain\\Enums\\CheckStatus.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T11:37:59.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Check.cs",
+              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Domain\\Entities\\Check.cs",
+              "RelativeDocumentMoniker": "eMuhasebeServer.Domain\\Entities\\Check.cs",
+              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Domain\\Entities\\Check.cs",
+              "RelativeToolTip": "eMuhasebeServer.Domain\\Entities\\Check.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T11:37:26.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CompanyDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Infrastructure\\Context\\CompanyDbContext.cs",
+              "RelativeDocumentMoniker": "eMuhasebeServer.Infrastructure\\Context\\CompanyDbContext.cs",
+              "ToolTip": "C:\\Users\\seley\\OneDrive\\Masa\u00FCst\u00FC\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.Infrastructure\\Context\\CompanyDbContext.cs",
+              "RelativeToolTip": "eMuhasebeServer.Infrastructure\\Context\\CompanyDbContext.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAIAzwBIAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T11:36:29.519Z",
+              "EditorCaption": ""
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
             }
           ]
         }

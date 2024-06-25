@@ -1,4 +1,5 @@
 ﻿using eMuhasebeServer.Domain.Entities;
+<<<<<<< HEAD
 using eMuhasebeServer.Domain.Enums;
 using eMuhasebeServer.Domain.Repositories;
 using eMuhasebeServer.Infrastructure.Context;
@@ -65,4 +66,17 @@ public sealed class CheckRepository : Repository<Check, CompanyDbContext>, IChec
         _dbContext.SaveChanges(); // Veya _unitOfWorkCompany.SaveChanges()
     }
 
+=======
+using eMuhasebeServer.Domain.Repositories;
+using eMuhasebeServer.Infrastructure.Context;
+using GenericRepository;
+
+namespace eMuhasebeServer.Infrastructure.Repositories;
+
+public sealed class CheckRepository: Repository<Check, CompanyDbContext>, ICheckRepository
+{
+    public CheckRepository(CompanyDbContext context) : base(context)
+    {
+    }
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 }

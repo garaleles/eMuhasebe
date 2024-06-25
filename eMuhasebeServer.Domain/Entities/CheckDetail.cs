@@ -5,10 +5,16 @@ namespace eMuhasebeServer.Domain.Entities;
 
 public class CheckDetail : Entity
 {
+<<<<<<< HEAD
     public Guid? CheckId { get; set; }
     public Check? Check { get; set; }
     public CheckStatus Status { get; set; } = CheckStatus.InPortfolio;
     public CheckStatus PreviousStatus { get; set; } // New field
+=======
+    public Guid CheckId { get; set; }
+    public Check Check { get; set; } = null!;
+    public CheckStatus Status { get; set; } = CheckStatus.InPortfolio;
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
     public DateOnly DueDate { get; set; }
     public DateOnly? IssuedDate { get; set; }
     public DateOnly? CollectedDate { get; set; }
@@ -22,6 +28,7 @@ public class CheckDetail : Entity
     public string? Creditor { get; set; }
     public string? Endorser { get; set; }
     public Guid? CheckRegisterPayrollDetailId { get; set; }
+<<<<<<< HEAD
     public Guid? ChequeissuePayrollDetailId { get; set; }
     public ChequeissuePayrollDetail? ChequeissuePayrollDetail { get; set; }
 
@@ -29,4 +36,7 @@ public class CheckDetail : Entity
 
 
 
+=======
+    public CheckRegisterPayrollDetail? CheckRegisterPayrollDetail { get; set; }
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 }

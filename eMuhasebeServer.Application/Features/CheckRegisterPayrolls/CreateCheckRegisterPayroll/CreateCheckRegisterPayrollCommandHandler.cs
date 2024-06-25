@@ -53,11 +53,28 @@ internal sealed class
             // Log incoming request
             Console.WriteLine($"Received Request: {JsonConvert.SerializeObject(request)}");
 
+<<<<<<< HEAD
           
+=======
+            // Validate and convert the enum value
+            CheckRegisterPayrollType type;
+            try
+            {
+                type = CheckRegisterPayrollType.FromValue(request.TypeValue);
+            }
+            catch (SmartEnumNotFoundException)
+            {
+                throw new ArgumentException($"Invalid CheckRegisterPayrollType value: {request.TypeValue}");
+            }
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
 
             // Convert command to entity
             var checkRegisterPayroll = new CheckRegisterPayroll
             {
+<<<<<<< HEAD
+=======
+                Type = type,
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
                 Date = request.Date,
                 PayrollNumber = request.PayrollNumber,
                 CustomerId = request.CustomerId,

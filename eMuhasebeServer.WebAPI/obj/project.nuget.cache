@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "Jer+b/VxRaQ=",
+=======
+  "dgSpecHash": "ZgAInTgld2BNObCwj3QR/TJsow5pwWw/aQpiD7FmABeYrNGq2bwPwGSoinuis/VwM/WcFq2pU4rJ3LOxfAqIbA==",
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
   "success": true,
   "projectFilePath": "C:\\Users\\seley\\OneDrive\\Masaüstü\\eMuhasebe\\eMuhasebeServer\\eMuhasebeServer.WebAPI\\eMuhasebeServer.WebAPI.csproj",
   "expectedPackageFiles": [

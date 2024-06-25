@@ -5,7 +5,11 @@ namespace eMuhasebeServer.Domain.Entities;
 
 public sealed class CheckRegisterPayroll : Entity
 {
+<<<<<<< HEAD
 
+=======
+    public CheckRegisterPayrollType Type { get; set; } = CheckRegisterPayrollType.Inward;
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
     public DateOnly Date { get; set; }
     public string PayrollNumber { get; set; } = string.Empty;
     public Guid? CustomerId { get; set; }

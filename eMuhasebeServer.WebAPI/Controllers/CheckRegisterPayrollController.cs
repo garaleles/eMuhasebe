@@ -30,9 +30,15 @@ public sealed class CheckRegisterPayrollController: ApiController
    
     
     [HttpPost]
+<<<<<<< HEAD
     public async Task<ActionResult> DeleteCheckRegisterPayrollById(DeleteChecRegisterPayrollByIdCommand deleteChecRegisterPayrollByIdCommand, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(deleteChecRegisterPayrollByIdCommand, cancellationToken);
+=======
+    public async Task<ActionResult> DeleteCheckRegisterPayrollById(DeleteChecRegisterPayrollByIdCommand deleteBankCommand, CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(deleteBankCommand, cancellationToken);
+>>>>>>> f5ce1916f9f2464a550c86c2634782668fce3af3
         return StatusCode(response.StatusCode, response);
     }
 
