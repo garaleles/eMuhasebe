@@ -12,4 +12,6 @@ public sealed class Bank: Entity
     public decimal WithdrawalAmount { get; set; } //Çıkış
     
     public List<BankDetail>? Details { get; set; }
+    public List<ChequeissuePayroll>? ChequeissuePayrolls { get; set; }
+  
 }

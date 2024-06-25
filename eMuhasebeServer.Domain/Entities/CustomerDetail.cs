@@ -17,6 +17,8 @@ public sealed class CustomerDetail: Entity
     public Guid? InvoiceId { get; set; }
     public Guid? CollectionId { get; set; }
     public Guid? PaymentId { get; set; }
+    public Guid? CheckRegisterPayrollId { get; set; }
+    public Guid? ChequeissuePayrollId { get; set; }
 
     
 }

@@ -17,9 +17,7 @@ public sealed class CashRegisterDetail : Entity
     public Guid? ExpenseDetailId { get; set; }
     public Guid? CollectionId { get; set; }
     public Guid? PaymentId { get; set; }
-    
-  
-
-
-
+    public List<ChequeissuePayroll>? ChequeissuePayrolls { get; set; }
+    public Guid? ChequeissuePayrollId { get; set; }
+    public List<ChequeissuePayrollDetail>? ChequeissuePayrollDetails { get; set; }
 }

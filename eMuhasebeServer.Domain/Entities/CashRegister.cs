@@ -11,4 +11,5 @@ public sealed class CashRegister : Entity
     public decimal WithdrawalAmount { get; set; } //Çıkış
 
     public List<CashRegisterDetail>? Details { get; set; }
+    public List<ChequeissuePayroll>? ChequeissuePayrolls { get; set; }
 }

@@ -1,6 +1,10 @@
-﻿using eMuhasebeServer.Domain.Entities;
+﻿using eMuhasebeServer.Application.Services;
+using eMuhasebeServer.Domain.Entities;
+using eMuhasebeServer.Domain.Repositories;
 using eMuhasebeServer.Infrastructure.Context;
 using eMuhasebeServer.Infrastructure.Options;
+using eMuhasebeServer.Infrastructure.Repositories;
+using eMuhasebeServer.Infrastructure.Services;
 using GenericRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 using System.Reflection;
-using eMuhasebeServer.Application.Services;
-using eMuhasebeServer.Domain.Repositories;
-using eMuhasebeServer.Infrastructure.Services;
-using StackExchange.Redis;
 
 namespace eMuhasebeServer.Infrastructure
 {
@@ -20,7 +20,7 @@ namespace eMuhasebeServer.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMemoryCache();
-           // services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
+            // services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
             services.AddScoped<ICacheService, MemoryCacheService>();
             //services.AddScoped<ICacheService, RedisCacheService>();
             services.AddScoped<CompanyDbContext>();
@@ -31,6 +31,10 @@ namespace eMuhasebeServer.Infrastructure
 
             services.AddScoped<IUnitOfWork>(srv => srv.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<IUnitOfWorkCompany>(srv => srv.GetRequiredService<CompanyDbContext>());
+            services.AddScoped<IUnitOfWorkCompany, UnitOfWorkCompany>();
+
+
+
 
             services
                 .AddIdentity<AppUser, IdentityRole<Guid>>(cfr =>

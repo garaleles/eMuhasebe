@@ -1,7 +1,6 @@
 ﻿using eMuhasebeServer.Application.Services;
 using Newtonsoft.Json;
 using StackExchange.Redis;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace eMuhasebeServer.Infrastructure.Services;
 
@@ -46,7 +45,7 @@ public sealed class RedisCacheService : ICacheService
             "invoices",
             "products",
             "customers",
-            
+
         };
         foreach (var key in keys)
         {
